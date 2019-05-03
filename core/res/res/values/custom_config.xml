@@ -331,4 +331,6 @@
     <!-- Whether device uses linear screen brightness slider -->
     <bool name="config_linearBrightnessSlider">false</bool>
 
+    <!-- Pocket Lock -->
+    <bool name="config_pocketModeSupported">true</bool>
 </resources>
