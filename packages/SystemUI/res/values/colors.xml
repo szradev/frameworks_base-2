@@ -272,4 +272,13 @@
     <color name="misalignment_text_color">#F28B82</color>
 
     <color name="screenrecord_status_color">#E94235</color>
+<<<<<<< HEAD
+=======
+
+    <!-- Color of the FOD view -->
+    <color name="config_fodColor">#00ff00</color>
+    <color name="config_fodColorBackground">#20000000</color>
+
+    <color name="qs_tile_background_color_disabled">#f2f2f2</color>
+>>>>>>> a7685e1a76ab... [SQUASH] base: Tint QS Tile with accent color [1/2]
 </resources>

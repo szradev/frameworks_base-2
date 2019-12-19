@@ -2013,6 +2013,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QS_SHOW_BATTERY_PERCENT),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.QS_PANEL_BG_USE_NEW_TINT),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -2020,8 +2023,25 @@ public class StatusBar extends SystemUI implements DemoMode,
             if (uri.equals(Settings.Secure.getUriFor(
                     Settings.Secure.FP_SWIPE_TO_DISMISS_NOTIFICATIONS))) {
                 setFpToDismissNotifications();
+<<<<<<< HEAD
             } else if (uri.equals(Settings.System.getUriFor(Settings.System.QS_SHOW_BATTERY_PERCENT))) {
                 setQsBatteryPercentMode();
+=======
+            } else if (uri.equals(Settings.System.getUriFor(Settings.System.QS_ROWS_PORTRAIT)) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.QS_ROWS_LANDSCAPE)) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.QS_COLUMNS_PORTRAIT)) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.QS_COLUMNS_LANDSCAPE)) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.QS_TILE_TITLE_VISIBILITY))) {
+                updateQsPanelResources();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.PULSE_ON_NEW_TRACKS))) {
+                setPulseOnNewTracks();
+            } else if (uri.equals(Settings.System.getUriFor(Settings.System.REFRESH_RATE_SETTING))) {
+                setRefreshRate();
+            } else if (uri.equals(Settings.System.getUriFor(Settings.System.QS_PANEL_BG_USE_NEW_TINT))) {
+                mQSPanel.getHost().reloadAllTiles();
+            }
+>>>>>>> a7685e1a76ab... [SQUASH] base: Tint QS Tile with accent color [1/2]
         }
    }
         public void update() {
