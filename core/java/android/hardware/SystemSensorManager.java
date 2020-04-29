@@ -260,10 +260,13 @@ public class SystemSensorManager extends SensorManager {
                     sensortype == Sensor.TYPE_ACCELEROMETER ||
                     sensortype == Sensor.TYPE_LINEAR_ACCELERATION) {
                 String pkgName = mContext.getPackageName();
-                if (isBlockedApp(pkgName)) {
-                    Log.w(TAG, "Preventing " + pkgName + " from draining battery using " +
-                            sensor.getStringType());
-                    return false;
+                for (String blockedPkgName : mContext.getResources().getStringArray(
+                        com.android.internal.R.array.config_blockPackagesSensorDrain)) {
+                    if (pkgName.equals(blockedPkgName)) {
+                        Log.w(TAG, "Preventing " + pkgName + "from draining battery using " +
+                                sensor.getStringType());
+                        return false;
+                    }
                 }
             }
         }
