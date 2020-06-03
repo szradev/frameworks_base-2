@@ -65,4 +65,7 @@
     <dimen name="keyguard_charging_indication_height">60dp</dimen>
     <dimen name="keyguard_charging_indication_width">32dp</dimen>
 
+    <!-- Volume panel -->
+    <dimen name="volume_dialog_panel_land_margin">68dp</dimen>
+
 </resources>
