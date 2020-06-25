@@ -702,6 +702,15 @@
             </intent-filter>
         </receiver>
 
+       <receiver android:name=".statusbar.phone.VolumePluginManager">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_INSTALL" />
+                <action android:name="android.intent.action.PACKAGE_CHANGED" />
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <data android:scheme="package"/>
+            </intent-filter>
+        </receiver>
+
         <!-- SystemUI Tuner -->
         <activity-alias
             android:name=".tuner.StatusBarTuner"
@@ -744,6 +753,5 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity-alias>
-
     </application>
 </manifest>

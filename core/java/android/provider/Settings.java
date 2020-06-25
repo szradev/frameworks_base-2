@@ -5174,6 +5174,12 @@ public final class Settings {
         public static final Validator DEVICE_HOSTNAME_VALIDATOR =
                 ANY_STRING_VALIDATOR;
 
+	/**
+         * Holds current enabled volume panel implementation
+         * @hide
+         */
+        public static final String SYSTEMUI_PLUGIN_VOLUME = "systemui_plugin_volume";
+
         /**
          * Whether the phone ringtone should be played in an increasing manner
          * 0 = 0ff, 1 = on
@@ -5954,6 +5960,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(HIGH_TOUCH_SENSITIVITY_ENABLE);
             PRIVATE_SETTINGS.add(BACK_GESTURE_HAPTIC);
             PRIVATE_SETTINGS.add(FOD_GESTURE);
+            PRIVATE_SETTINGS.add(SYSTEMUI_PLUGIN_VOLUME);
         }
 
         /**
