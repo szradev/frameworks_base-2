@@ -379,7 +379,8 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
         mParams.type = WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG;
         mParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
                 WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN |
-                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED |
+                WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH;
         mParams.gravity = Gravity.TOP | Gravity.LEFT;
 
         mPressedParams.copyFrom(mParams);
