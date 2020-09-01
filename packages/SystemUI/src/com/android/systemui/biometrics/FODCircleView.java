@@ -75,7 +75,6 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
     private final int mDreamingMaxOffset;
     private final int mNavigationBarSize;
     private final boolean mShouldBoostBrightness;
-    private final Paint mPaintFingerprintBackground = new Paint();
     private final Paint mPaintFingerprint = new Paint();
     private final WindowManager.LayoutParams mParams = new WindowManager.LayoutParams();
     private final WindowManager.LayoutParams mPressedParams = new WindowManager.LayoutParams();
@@ -85,9 +84,6 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
 
     private int mDreamingOffsetX;
     private int mDreamingOffsetY;
-
-    private int mColor;
-    private int mColorBackground;
 
     private boolean mIsBouncer;
     private boolean mIsDreaming;
@@ -289,8 +285,6 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
 
         mContext = context;
 
-        setScaleType(ScaleType.CENTER);
-
         IFingerprintInscreen daemon = getFingerprintInScreenDaemon();
         if (daemon == null) {
             throw new RuntimeException("Unable to get IFingerprintInscreen");
@@ -312,14 +306,8 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
         mSupportsFodGesture = context.getResources().getBoolean(
             com.android.internal.R.bool.config_supportsInDisplayFingerprintGesture);
 
-        mColor = res.getColor(R.color.config_fodColor);
-
-        mPaintFingerprint.setColor(mColor);
+        mPaintFingerprint.setColor(res.getColor(R.color.config_fodColor));
         mPaintFingerprint.setAntiAlias(true);
-
-        mColorBackground = res.getColor(R.color.config_fodColorBackground);
-        mPaintFingerprintBackground.setColor(mColorBackground);
-        mPaintFingerprintBackground.setAntiAlias(true);
 
         mPowerManager = context.getSystemService(PowerManager.class);
         mWakeLock = mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
@@ -353,7 +341,7 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
             @Override
             protected void onDraw(Canvas canvas) {
                 if (mIsCircleShowing) {
-                    canvas.drawCircle(mSize / 2, mSize / 2, mSize / 2.0f, mPaintFingerprint);
+                    setImageResource(R.drawable.fod_icon_pressed);
                 }
                 super.onDraw(canvas);
             }
@@ -384,7 +372,7 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
     @Override
     protected void onDraw(Canvas canvas) {
         if (!mIsCircleShowing) {
-            canvas.drawCircle(mSize / 2, mSize / 2, mSize / 2.0f, mPaintFingerprintBackground);
+            canvas.drawCircle(mSize / 2, mSize / 2, mSize / 2.0f, mPaintFingerprint);
         }
         super.onDraw(canvas);
     }
@@ -479,7 +467,6 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
         dispatchPress();
 
         setImageDrawable(null);
-        mPressedView.setImageResource(R.drawable.fod_icon_pressed);
         invalidate();
     }
 
