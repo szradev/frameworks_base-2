@@ -5642,7 +5642,7 @@ public final class Settings {
         public static final String TINT_QS_TILES = "tint_qs_tiles";
 
         private static final Validator TINT_QS_TILES_VALIDATOR = BOOLEAN_VALIDATOR;
-       
+
          /**
          * @hide
          */
@@ -5665,6 +5665,9 @@ public final class Settings {
          * @hide
          */
         public static final String POCKET_JUDGE = "pocket_judge";
+
+	/** @hide */
+	public static final Validator POCKET_JUDGE_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
          * Screen off fod
@@ -5972,6 +5975,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BACK_GESTURE_HAPTIC);
             PRIVATE_SETTINGS.add(FOD_GESTURE);
             PRIVATE_SETTINGS.add(AUTO_BRIGHTNESS_MIN_VALUE);
+	    PRIVATE_SETTINGS.add(POCKET_JUDGE);
         }
 
         /**
@@ -6168,6 +6172,7 @@ public final class Settings {
             VALIDATORS.put(SWITCH_STYLE, SWITCH_STYLE_VALIDATOR);
             VALIDATORS.put(FOD_GESTURE, FOD_GESTURE_VALIDATOR);
             VALIDATORS.put(AUTO_BRIGHTNESS_MIN_VALUE, AUTO_BRIGHTNESS_MIN_VALUE_VALIDATOR);
+	    VALIDATORS.put(POCKET_JUDGE, POCKET_JUDGE_VALIDATOR);
         }
 
         /**

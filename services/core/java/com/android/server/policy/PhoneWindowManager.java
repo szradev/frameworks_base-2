@@ -2153,7 +2153,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     }
                 } catch (RemoteException ignored) {
                 }
-                mHandler.post(mScreenshotRunnable);
+		if (!mPocketLockShowing) {
+                    mHandler.post(mScreenshotRunnable);
+                }
             }
         });
 
