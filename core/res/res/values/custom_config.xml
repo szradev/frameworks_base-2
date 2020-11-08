@@ -179,4 +179,6 @@
     -->
     <integer name="config_longPressOnAssistBehavior">4</integer>
 
+    <bool name="config_has_Soli">false</bool>
+
 </resources>

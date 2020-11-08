@@ -113,4 +113,5 @@
     <java-symbol type="integer" name="config_pressOnAssistBehavior" />
     <java-symbol type="integer" name="config_longPressOnAssistBehavior" />
 
+    <java-symbol type="bool" name="config_has_Soli" />
 </resources>
