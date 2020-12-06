@@ -16,11 +16,16 @@
 
 package com.android.internal.util.custom;
 
+import static android.content.Context.NOTIFICATION_SERVICE;
+import static android.content.Context.VIBRATOR_SERVICE;
+
 import android.app.ActivityManager;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
+import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.RemoteException;
 import android.os.ServiceManager;
@@ -145,6 +150,11 @@ public class ActionUtils {
         FireActions.clearAllNotifications();
     }
 
+    // Start Assistant
+    public static void startAssist() {
+        FireActions.startAssist();
+    }
+
     private static final class FireActions {
         private static IStatusBarService mStatusBarService = null;
         private static IStatusBarService getStatusBarService() {
@@ -176,6 +186,15 @@ public class ActionUtils {
                 } catch (RemoteException e) {
                     // do nothing.
                 }
+            }
+        }
+
+        public static void startAssist() {
+            IStatusBarService service = getStatusBarService();
+            if (service != null) {
+                try {
+                    service.startAssist(new Bundle());
+                } catch (RemoteException e) {}
             }
         }
 
