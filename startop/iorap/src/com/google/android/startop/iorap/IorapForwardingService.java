@@ -154,6 +154,12 @@ public class IorapForwardingService extends SystemService {
 
     @VisibleForTesting
     protected boolean isIorapEnabled() {
+        // These two mendel flags should match those in iorapd native process
+        // system/iorapd/src/common/property.h
+        boolean isTracingEnabled =
+            getMendelFlag("iorap_perfetto_enable", "iorapd.perfetto.enable", true);
+        boolean isReadAheadEnabled =
+            getMendelFlag("iorap_readahead_enable", "iorapd.readahead.enable", false);
         // Same as the property in iorapd.rc -- disabling this will mean the 'iorapd' binder process
         // never comes up, so all binder connections will fail indefinitely.
         return IS_ENABLED;
