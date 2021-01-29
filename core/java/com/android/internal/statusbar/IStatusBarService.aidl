@@ -158,6 +158,7 @@ interface IStatusBarService
      * DerpFest
      */
     void toggleCameraFlash();
+    void killForegroundApp();
 
     /**
      * Starts the default assistant app.

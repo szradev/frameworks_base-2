@@ -24,6 +24,7 @@ import com.android.systemui.bubbles.BubbleController;
 import com.android.systemui.colorextraction.SysuiColorExtractor;
 import com.android.systemui.dock.DockManager;
 import com.android.systemui.keyguard.DismissCallbackRegistry;
+import com.android.systemui.statusbar.policy.TaskHelper;
 import com.android.systemui.keyguard.KeyguardViewMediator;
 import com.android.systemui.keyguard.ScreenLifecycle;
 import com.android.systemui.keyguard.WakefulnessLifecycle;
@@ -174,6 +175,7 @@ public class StatusBarGoogle extends StatusBar {
             Optional<Divider> dividerOptional,
             LightsOutNotifController lightsOutNotifController,
             FlashlightController flashlightController,
+            TaskHelper taskHelper,
             StatusBarNotificationActivityStarter.Builder
                     statusBarNotificationActivityStarterBuilder,
             ShadeController shadeController,
@@ -254,6 +256,7 @@ public class StatusBarGoogle extends StatusBar {
                 dividerOptional,
                 lightsOutNotifController,
                 flashlightController,
+                taskHelper,
                 statusBarNotificationActivityStarterBuilder,
                 shadeController,
                 superStatusBarViewFactory,

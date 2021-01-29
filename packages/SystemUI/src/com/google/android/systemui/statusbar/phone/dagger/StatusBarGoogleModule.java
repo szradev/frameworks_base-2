@@ -97,6 +97,7 @@ import com.android.systemui.statusbar.policy.FlashlightController;
 import com.android.systemui.statusbar.policy.KeyguardStateController;
 import com.android.systemui.statusbar.policy.NetworkController;
 import com.android.systemui.statusbar.policy.RemoteInputQuickSettingsDisabler;
+import com.android.systemui.statusbar.policy.TaskHelper;
 import com.android.systemui.statusbar.policy.UserInfoControllerImpl;
 import com.android.systemui.statusbar.policy.UserSwitcherController;
 import com.android.systemui.tuner.TunerService;
@@ -185,6 +186,7 @@ public interface StatusBarGoogleModule {
             Optional<Divider> dividerOptional,
             LightsOutNotifController lightsOutNotifController,
             FlashlightController flashlightController,
+            TaskHelper taskHelper,
             StatusBarNotificationActivityStarter.Builder
                     statusBarNotificationActivityStarterBuilder,
             ShadeController shadeController,
@@ -267,6 +269,7 @@ public interface StatusBarGoogleModule {
                 dividerOptional,
                 lightsOutNotifController,
                 flashlightController,
+                taskHelper,
                 statusBarNotificationActivityStarterBuilder,
                 shadeController,
                 superStatusBarViewFactory,
