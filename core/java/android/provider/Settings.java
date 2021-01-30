@@ -5208,12 +5208,6 @@ public final class Settings {
          */
         public static final String QS_MEDIA_PLAYER = "qs_media_player";
 
-        /** Whether to skip music track with volume rocker
-         *
-         * @hide
-         */
-        public static final String VOLUME_BUTTON_MUSIC_CONTROL = "volume_button_music_control";
-
         /**
          * Toggle for clipboard access toast.
          * @hide
