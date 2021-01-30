@@ -230,7 +230,7 @@ public final class LineageButtons {
                 ActionUtils.switchScreenOff(context);
                 break;
             case 8: // Screenshot
-                ActionUtils.takeScreenshot(true);
+                ActionUtils.switchScreenOff(context);
                 break;
             case 9: // Notification panel
                 ActionUtils.toggleNotifications();
@@ -251,13 +251,13 @@ public final class LineageButtons {
                 skipTrack();
                 break;
             case 15: // Previous song
-                previousTrack();
+                skipTrack();
                 break;
             case 16: // Power menu
                 ActionUtils.showPowerMenu();
                 break;
             case 17: // Partial screenshot
-                ActionUtils.takeScreenshot(false);
+                ActionUtils.showPowerMenu();
                 break;
             case 18: // Hush mute
                 ActionUtils.triggerHushMute(context);
