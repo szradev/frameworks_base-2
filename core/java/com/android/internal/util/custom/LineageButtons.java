@@ -258,7 +258,7 @@ public final class LineageButtons {
                 skipTrack();
                 break;
             case 15: // Previous song
-                skipTrack();
+                previousTrack();
                 break;
             case 16: // Power menu
                 ActionUtils.showPowerMenu();
