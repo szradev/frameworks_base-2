@@ -47,6 +47,8 @@ import java.util.Locale;
 
 public class CustomUtils {
 
+    public static final String INTENT_SCREENSHOT = "action_handler_screenshot";
+    public static final String INTENT_REGION_SCREENSHOT = "action_handler_region_screenshot";
     public static boolean isPackageInstalled(Context context, String pkg, boolean ignoreState) {
         if (pkg != null) {
             try {
@@ -153,8 +155,99 @@ public class CustomUtils {
             pm.goToSleep(SystemClock.uptimeMillis());
         }
     }
+    //Utils For Advance Gestures
+    // Launch camera
+    public static void launchCamera(Context context) {
+        Intent intent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA_SECURE);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        context.startActivity(intent);
+    }
 
-	// Check if device has a notch
+    // Launch voice search
+    public static void launchVoiceSearch(Context context) {
+        Intent intent = new Intent(Intent.ACTION_SEARCH_LONG_PRESS);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        try {
+            context.startActivity(intent);
+        } catch (Exception e) {
+            Log.e(TAG, "Could not launch voice search");
+        }
+    }
+// Screen off
+    public static void switchScreenOff(Context ctx) {
+        PowerManager pm = (PowerManager) ctx.getSystemService(Context.POWER_SERVICE);
+        if (pm!= null && pm.isScreenOn()) {
+            pm.goToSleep(SystemClock.uptimeMillis());
+        }
+    }
+
+    // Screen on
+    public static void switchScreenOn(Context context) {
+        PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+        if (pm == null) return;
+        pm.wakeUp(SystemClock.uptimeMillis(), "com.android.systemui:CAMERA_GESTURE_PREVENT_LOCK");
+    }
+
+    // Volume panel
+    public static void toggleVolumePanel(Context context) {
+        AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+        am.adjustVolume(AudioManager.ADJUST_SAME, AudioManager.FLAG_SHOW_UI);
+    }
+// Clear notifications
+    public static void clearAllNotifications() {
+        IStatusBarService service = getStatusBarService();
+        if (service != null) {
+            try {
+                service.onClearAllNotifications(ActivityManager.getCurrentUser());
+            } catch (RemoteException e) {
+                // do nothing.
+            }
+        }
+    }
+// Toggle notifications panel
+    public static void toggleNotifications() {
+        IStatusBarService service = getStatusBarService();
+        if (service != null) {
+            try {
+                service.togglePanel();
+            } catch (RemoteException e) {
+                // do nothing.
+            }
+        }
+    }
+
+    // Toggle qs panel
+    public static void toggleQsPanel() {
+        IStatusBarService service = getStatusBarService();
+        if (service != null) {
+            try {
+                service.toggleSettingsPanel();
+            } catch (RemoteException e) {
+                // do nothing.
+            }
+        }
+    }
+
+// Switch to last app
+    public static void switchToLastApp(Context context) {
+        final ActivityManager am =
+                (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager.RunningTaskInfo lastTask = getLastTask(context, am);
+
+        if (lastTask != null) {
+            am.moveTaskToFront(lastTask.id, ActivityManager.MOVE_TASK_NO_USER_ACTION,
+                    getAnimation(context).toBundle());
+        }
+    }
+
+    private static ActivityOptions getAnimation(Context context) {
+        return ActivityOptions.makeCustomAnimation(context,
+                com.android.internal.R.anim.custom_app_in,
+                com.android.internal.R.anim.custom_app_out);
+    }
+
+    // Check if device has a notch
     public static boolean hasNotch(Context context) {
         int result = 0;
         int resid;
@@ -179,7 +272,15 @@ public class CustomUtils {
     public static void toggleCameraFlash() {
         FireActions.toggleCameraFlash();
     }
-    private static final class FireActions {
+    public static void takeScreenshot(boolean full) {
+        IWindowManager wm = WindowManagerGlobal.getWindowManagerService();
+        try {
+            wm.sendCustomAction(new Intent(full? INTENT_SCREENSHOT : INTENT_REGION_SCREENSHOT));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+     private static final class FireActions {
         private static IStatusBarService mStatusBarService = null;
         private static IStatusBarService getStatusBarService() {
             synchronized (FireActions.class) {

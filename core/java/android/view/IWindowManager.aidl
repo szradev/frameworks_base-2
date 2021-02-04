@@ -23,6 +23,7 @@ import com.android.internal.policy.IShortcutService;
 import android.app.IAssistDataReceiver;
 import android.content.res.CompatibilityInfo;
 import android.content.res.Configuration;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.GraphicBuffer;
 import android.graphics.Insets;
@@ -396,6 +397,11 @@ interface IWindowManager
      * Called by System UI to notify of changes to the visibility of PIP.
      */
     oneway void setPipVisibility(boolean visible);
+
+    /**
+     * Send some ActionHandler commands to WindowManager.
+     */
+    void sendCustomAction(in Intent intent);
 
     /**
      * Called by System UI to enable or disable haptic feedback on the navigation bar buttons.

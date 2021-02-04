@@ -274,6 +274,7 @@
     <protected-broadcast android:name="com.android.settingslib.action.REGISTER_SLICE_RECEIVER" />
     <protected-broadcast android:name="com.android.settingslib.action.UNREGISTER_SLICE_RECEIVER" />
     <protected-broadcast android:name="com.android.settings.flashlight.action.FLASHLIGHT_CHANGED" />
+    <uses-permission android:name="android.permission.ACCESS_SURFACE_FLINGER" />
 
     <!-- Smart space -->
     <uses-permission android:name="com.google.android.apps.nexuslauncher.permission.QSB"/>

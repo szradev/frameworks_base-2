@@ -70,6 +70,7 @@ import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.app.WindowConfiguration;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.CompatibilityInfo;
 import android.content.res.Configuration;
 import android.graphics.Rect;
@@ -1309,6 +1310,11 @@ public interface WindowManagerPolicy extends WindowManagerPolicyConstants {
      * Called by System UI to notify of changes to the visibility of PIP.
      */
     void setPipVisibilityLw(boolean visible);
+
+    /**
+     * Send some ActionHandler commands to WindowManager.
+     */
+    public void sendCustomAction(Intent intent);
 
     /**
      * Called by System UI to enable or disable haptic feedback on the navigation bar buttons.
