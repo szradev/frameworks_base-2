@@ -75,7 +75,7 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
     private final int mSize;
     private final int mDreamingMaxOffset;
     private final int mNavigationBarSize;
-    private final boolean mShouldBoostBrightness;
+    private  boolean mShouldBoostBrightness;
     private final Paint mPaintFingerprintBackground = new Paint();
     private final WindowManager.LayoutParams mParams = new WindowManager.LayoutParams();
     private final WindowManager.LayoutParams mPressedParams = new WindowManager.LayoutParams();
@@ -343,7 +343,6 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
         }
 
         try {
-            mShouldBoostBrightness = daemon.shouldBoostBrightness();
             mPositionX = daemon.getPositionX();
             mPositionY = daemon.getPositionY();
             mSize = daemon.getSize();
@@ -379,7 +378,8 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
         mParams.type = WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG;
         mParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
                 WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN |
-                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED |
+                WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH;
         mParams.gravity = Gravity.TOP | Gravity.LEFT;
 
         mPressedParams.copyFrom(mParams);
@@ -694,6 +694,7 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
             IFingerprintInscreen daemon = getFingerprintInScreenDaemon();
             try {
                 dimAmount = daemon.getDimAmount(curBrightness);
+                mShouldBoostBrightness = daemon.shouldBoostBrightness();
             } catch (RemoteException e) {
                 // do nothing
             }

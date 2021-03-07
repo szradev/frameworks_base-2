@@ -5510,7 +5510,7 @@ public class ActivityManagerService extends IActivityManager.Stub
             storageManager.commitChanges();
         } catch (Exception e) {
             PowerManager pm = (PowerManager)
-                     mInjector.getContext().getSystemService(Context.POWER_SERVICE);
+                     mContext.getSystemService(Context.POWER_SERVICE);
             pm.reboot("Checkpoint commit failed");
         }
 
@@ -8589,8 +8589,8 @@ public class ActivityManagerService extends IActivityManager.Stub
 
     @Override
     public void requestSystemServerHeapDump() {
-        if (!Build.IS_DEBUGGABLE) {
-            Slog.wtf(TAG, "requestSystemServerHeapDump called on a user build");
+        if (!Build.IS_ENG) {
+            Slog.wtf(TAG, "requestSystemServerHeapDump called on a non eng build.");
             return;
         }
         if (Binder.getCallingUid() != SYSTEM_UID) {
